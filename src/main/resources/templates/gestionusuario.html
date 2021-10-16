@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: #111;
+}
+
+.active {
+	background-color: #0f4c75;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<ul>
+		<li><a href="/gestionusuario">Usuarios</a></li>
+		<li><a href="/gestioncliente">Clientes</a></li>
+		<li><a href="/proveedor">Proveedores</a></li>
+		<li><a href="/producto">Productos</a></li>
+		<li><a href="/venta">Ventas</a></li>
+		<li><a href="/reporte">Reportes</a></li>
+		<li style="float: right"><a class="active" href="#about">Tienda Genérica</a></li>
+	</ul>
+
+<br>
+<h4 align="center">Gestión de Usuario</h4>
+<br>
+<div class="container">
+  <div >
+	<form th:action="@{/crearUsuario}" th:object="${usuario}" method="POST">
+		   	   
+  		  
+	
+				<input type="text" placeholder="Cedula" th:field="${usuario.cedula}" /><br>
+		
+				<input type="text" placeholder="Nombre" th:field="${usuario.nombre}" /><br>
+	
+				<input type="text" placeholder="Password" th:field="${usuario.password}" /><br>
+				
+				<input type="text" placeholder="Nombre Completo" th:field="${usuario.nombre_completo}" /><br>
+		
+				<input type="text" placeholder="Correo" th:field="${usuario.correo}" /><br>
+	
+				<input type="text" placeholder="Habilitado" th:field="${usuario.enabled}" /><br><br>
+		
+				<input type="submit" th:value="${usuario.cedula !=null}?'Guardar Usuario':'Crear Usuario'"/>	
+	</form>
+ </div>
+</div>
+<br>
+<br>
+	<table class="table">
+	
+		<thead>
+			<tr>
+				
+				<td>Cedula</td>
+				<td>Nombre</td>
+				<td>Password</td>
+				<td>Nombre Completo</td>
+				<td>Correo</td>
+				<td>Habilitado</td>
+			</tr>
+		
+		</thead>
+		
+		<tbody>
+			<tr th:each="usuario : ${usuarios}">
+				<td th:text=${usuario.cedula}></td>
+				<td th:text=${usuario.nombre}></td>
+				<td th:text=${usuario.password}></td>
+				<td th:text=${usuario.nombre_completo}></td>
+				<td th:text=${usuario.correo}></td>
+				<td th:text=${usuario.enabled}></td>
+				<td><a th:href="@{'/editarUsuario/' + ${usuario.cedula}}"> Editar </a> | <a th:href="@{'/eliminarUsuario/' + ${usuario.cedula}}"> Eliminar </a></td>
+			</tr>
+			
+		</tbody>
+	
+	
+	</table>
+
+</body>
+
+</html>
