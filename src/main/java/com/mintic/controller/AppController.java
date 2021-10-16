@@ -29,7 +29,7 @@ public class AppController {
 		String usuario = req.getParameter("usuario");
 		String password = req.getParameter("password");
 		
-		if(usuario.equals("admin") && password.equals("12345") ) {
+		if(usuario.equals("admininicial") && password.equals("admin123456") ) {
 			return "menu";
 			
 		}else {
