@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Tienda Genérica</title>
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  
+
+
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: #111;
+}
+
+.active {
+	background-color: #0f4c75;
+}
+</style>
+</head>
+
+<body>
+	<ul>
+		<li><a href="/gestionusuario">Usuarios</a></li>
+		<li><a href="/gestioncliente">Clientes</a></li>
+		<li><a href="/gestionproveedor">Proveedores</a></li>
+		<li><a href="/gestionproducto">Productos</a></li>
+		<li><a href="/venta">Ventas</a></li>
+		<li><a href="/reporte">Reportes</a></li>
+		<li><a href="/upload">Upload</a></li>
+		<li style="float: right"><a class="active" href="#about">Tienda
+				Genérica</a></li>
+	</ul>
+
+	<br>
+	
+		<br>
+	<h4 align="center">Gestión de Producto</h4>
+	<br>
+	<center>
+		
+		<br>
+		<div class="panel panel-primary" style="width: 600px">
+			<div class="panel-heading">
+				<h3 class="panel-title">Subir archivo</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" role="form" method="POST"
+					action="/upload" enctype="multipart/form-data">
+
+					<div class="form-group" style="width: 600px">
+						<label for="upload" class="col-sm-2 control-label">Selecciona
+							el archivo</label>
+						<div class="col-sm-10">
+							<input type="file" id="upload" name="file" />
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div>
+							<button type="submit" class="btn btn-success" id="btn_upload">enviar</button>
+							<input type="reset" class="btn btn-danger" value="Reiniciar" />
+
+						</div>
+					</div>
+					<div class="panel-body">
+
+						<div th:if="${message}">
+							<h5 th:text="${message}" />
+						</div>
+
+					</div>
+			</div>
+
+			</form>
+		</div>
+		</div>
+
+
+
+
+	</center>
+
+
+	<table class="table">
+
+		<thead>
+			<tr>
+				<td>Codigo</td>
+				<td>Nombre</td>
+				<td>Nit Proveedor</td>
+				<td>Precio Compra</td>
+				<td>Iva Compra</td>
+				<td>Precio Venta</td>
+			</tr>
+
+		</thead>
+
+		<tbody>
+			<tr th:each="producto : ${productos}">
+				<td th:text=${producto.codigo}></td>
+				<td th:text=${producto.nombre}></td>
+
+				<td th:text=${producto.nit}></td>
+
+				<td th:text=${producto.precio_compra}></td>
+				<td th:text=${producto.iva_compra}></td>
+				<td th:text=${producto.precio_venta}></td>
+				
+			</tr>
+
+		</tbody>
+
+
+	</table>
+
+
+</body>
+
+</html>

@@ -38,7 +38,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/editarCliente/{id}")
-	public String crearCliente(Model modelo,@PathVariable(name="id") Long cedula) {
+	public String editarCliente(Model modelo,@PathVariable(name="id") Long cedula) {
 		Cliente clienteParaEditar = clienteDao.findById(cedula).get();
 		modelo.addAttribute("cliente",clienteParaEditar );
 		modelo.addAttribute("clientes", clienteDao.findAll());

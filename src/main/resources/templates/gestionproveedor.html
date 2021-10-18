@@ -59,26 +59,25 @@ li a:hover:not(.active) {
 	</ul>
 
 	<br>
-	<h4 align="center">Gestión de Cliente</h4>
+	<h4 align="center">Gestión de Proveedores</h4>
 	<br>
 	<div class="container">
 		<div>
-			<form th:action="@{/crearCliente}" th:object="${cliente}"
+			<form th:action="@{/crearProveedor}" th:object="${proveedor}"
 				method="POST">
 
 
-				<input type="text" placeholder="Cedula" th:field="${cliente.cedula}" /><br>
+				<input type="text" placeholder="Nit" th:field="${proveedor.nit}" /><br>
 
-				<input type="text" placeholder="Nombre Completo"
-					th:field="${cliente.nombre_completo}" /><br> <input
-					type="text" placeholder="Direccion" th:field="${cliente.direccion}" /><br>
+				<input type="text" placeholder="Nombre" th:field="${proveedor.nombre}" /><br> 
+				
+				<input type="text" placeholder="Direccion" th:field="${proveedor.direccion}" /><br>
 
-				<input type="text" placeholder="Telefono"
-					th:field="${cliente.telefono}" /><br> <input type="text"
-					placeholder="Correo Electrónico"
-					th:field="${cliente.correo_electronico}" /><br> <input
-					type="submit"
-					th:value="${cliente.cedula !=null}?'Guardar Cliente':'Crear Cliente'" />
+				<input type="text" placeholder="Telefono" th:field="${proveedor.telefono}" /><br> 
+				
+				<input type="text" placeholder="Ciudad" th:field="${proveedor.ciudad}" /><br> 
+				
+				<input type="submit" th:value="${proveedor.nit !=null}?'Guardar Proveedor':'Crear Proveedor'" />
 			</form>
 		</div>
 	</div>
@@ -88,23 +87,24 @@ li a:hover:not(.active) {
 
 		<thead>
 			<tr>
-				<td>Cedula</td>
-				<td>Nombre Completo</td>
+				<td>Nit</td>
+				<td>Nombre</td>
 				<td>Dirección</td>
 				<td>Teléfono</td>
-				<td>Correo Eléctronico</td>
+				<td>Ciudad</td>
 			</tr>
 
 		</thead>
 
 		<tbody>
-			<tr th:each="cliente : ${clientes}">
-				<td th:text=${cliente.cedula}></td>
-				<td th:text=${cliente.nombre_completo}></td>
-				<td th:text=${cliente.direccion}></td>
-				<td th:text=${cliente.telefono}></td>
-				<td th:text=${cliente.correo_electronico}></td>
-				<td><a th:href="@{'/editarCliente/' + ${cliente.cedula}}"> Editar </a> | <a th:href="@{'/eliminarCliente/' + ${cliente.cedula}}"> Eliminar </a></td>
+			<tr th:each="proveedor : ${proveedores}">
+				<td th:text=${proveedor.nit}></td>
+				<td th:text=${proveedor.nombre}></td>
+				<td th:text=${proveedor.direccion}></td>
+				<td th:text=${proveedor.telefono}></td>
+				<td th:text=${proveedor.ciudad}></td>
+				<td><a th:href="@{'/editarProveedor/' + ${proveedor.nit}}">Editar </a> | <a th:href="@{'/eliminarProveedor/' + ${proveedor.nit}}">
+						Eliminar </a></td>
 			</tr>
 
 		</tbody>

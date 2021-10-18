@@ -1,6 +1,5 @@
 package com.mintic.model;
 
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -70,6 +69,8 @@ public class Proveedor {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	
 
 	
 }

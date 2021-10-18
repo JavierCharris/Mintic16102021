@@ -1,6 +1,6 @@
 package com.mintic.model;
 
-import java.util.Objects;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,48 +23,6 @@ public class Cliente {
 	private String correo_electronico;
 	
 	
-	public Cliente() {
-		
-	}
-
-
-	public Cliente(Long cedula, String nombre_completo, String direccion, String telefono,
-			String correo_electronico) {
-		super();
-		this.cedula = cedula;
-		this.nombre_completo = nombre_completo;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.correo_electronico = correo_electronico;
-	}
-
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cedula);
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(cedula, other.cedula);
-	}
-
-
-	@Override
-	public String toString() {
-		return "Cliente [cedula=" + cedula + ", nombre_completo=" + nombre_completo + ", direccion=" + direccion
-				+ ", telefono=" + telefono + ", correo_electronico=" + correo_electronico + "]";
-	}
-
-
 	public Long getCedula() {
 		return cedula;
 	}

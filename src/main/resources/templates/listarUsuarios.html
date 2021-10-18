@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: #111;
+}
+
+.active {
+	background-color: #0f4c75;
+}
+
+p {
+	text-align: center;
+}
+</style>
+
+
+</head>
+<body>
+
+	<ul>
+		<li><a href="/gestionusuario">Usuarios</a></li>
+		<li><a href="/gestioncliente">Clientes</a></li>
+		<li><a href="/gestionproveedor">Proveedores</a></li>
+		<li><a href="/gestionproducto">Productos</a></li>
+		<li><a href="/venta">Ventas</a></li>
+		<li><a href="/reporte">Reportes</a></li>
+		<li style="float: right"><a class="active" href="#about">Tienda
+				Genérica</a></li>
+	</ul>
+	<br>
+	<br>
+	<br>
+
+
+
+	<br>
+	<h4 align="center">Listado de Usuarios</h4>
+	<br>
+<table class="table">
+	
+		<thead>
+			<tr>
+				
+				<td>Cedula</td>
+				<td>Nombre</td>
+				<td>Password</td>
+				<td>Nombre Completo</td>
+				<td>Correo</td>
+				<td>Habilitado</td>
+			</tr>
+		
+		</thead>
+		
+		<tbody>
+			<tr th:each="usuario : ${usuarios}">
+				<td th:text=${usuario.cedula}></td>
+				<td th:text=${usuario.nombre}></td>
+				<td th:text=${usuario.password}></td>
+				<td th:text=${usuario.nombre_completo}></td>
+				<td th:text=${usuario.correo}></td>
+				<td th:text=${usuario.enabled}></td>
+		</tr>
+			
+		</tbody>
+	
+	
+	</table>
+
+
+
+
+
+	<br>
+	<br>
+
+</body>
+
+</html>
