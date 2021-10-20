@@ -98,7 +98,9 @@ li a:hover:not(.active) {
 
 		<tbody>
 			<tr th:each="proveedor : ${proveedores}">
+			
 				<td th:text=${proveedor.nit}></td>
+				
 				<td th:text=${proveedor.nombre}></td>
 				<td th:text=${proveedor.direccion}></td>
 				<td th:text=${proveedor.telefono}></td>

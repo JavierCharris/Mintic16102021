@@ -54,62 +54,52 @@ li a:hover:not(.active) {
 	</ul>
 
 <br>
-<h4 align="center">Gestión de Usuario</h4>
+<h4 align="center">Modulo Ventas</h4>
 <br>
 <div class="container">
-  <div >
-	<form th:action="@{/crearUsuario}" th:object="${usuario}" method="POST">
-		   	   
-				<input type="text" placeholder="Cedula" th:field="${usuario.cedula}" /><br>
-		
-				<input type="text" placeholder="Nombre" th:field="${usuario.nombre}" /><br>
+		<div>
 	
-				<input type="text" placeholder="Password" th:field="${usuario.password}" /><br>
-				
-				<input type="text" placeholder="Nombre Completo" th:field="${usuario.nombre_completo}" /><br>
-		
-				<input type="text" placeholder="Correo" th:field="${usuario.correo}" /><br>
-	
-				<input type="text" placeholder="Habilitado" th:field="${usuario.enabled}" /><br><br>
-				
-	
-		
-				<input type="submit" th:value="${usuario.cedula !=null}?'Guardar Usuario':'Crear Usuario'"/>	
-	</form>
- </div>
-</div>
-<br>
-<br>
-	<table class="table">
-	
+				<form th:action="@{/consultarCliente/}" th:object="${cliente}" method="GET">
+
+
+				<input type="text" placeholder="Cedula" th:field="${cliente.cedula}" /><br>
+
+				<input type="text" placeholder="Nombre Completo" th:field="${cliente.nombre_completo}" /><br> 
+			    <input type="submit" th:value="${cliente.cedula !=null}?'Consultar':'Consultar Cliente'" />
+			</form>
+			<br>
+				<div th:if="${message}">
+							<h5 th:text="${message}" />
+			   </div>
+			
+		</div>
+	</div>
+<table class="table">
+
 		<thead>
 			<tr>
-				
 				<td>Cedula</td>
-				<td>Nombre</td>
-				<td>Password</td>
 				<td>Nombre Completo</td>
-				<td>Correo</td>
-				<td>Habilitado</td>
+				<td>Dirección</td>
+				<td>Teléfono</td>
+				<td>Correo Eléctronico</td>
 			</tr>
-		
+
 		</thead>
-		
+
 		<tbody>
-			<tr th:each="usuario : ${usuarios}">
-				<td th:text=${usuario.cedula}></td>
-				<td th:text=${usuario.nombre}></td>
-				<td th:text=${usuario.password}></td>
-				<td th:text=${usuario.nombre_completo}></td>
-				<td th:text=${usuario.correo}></td>
-				<td th:text=${usuario.enabled}></td>
-			
-				<td><a th:href="@{'/editarUsuario/' + ${usuario.cedula}}"> Editar </a> | <a th:href="@{'/eliminarUsuario/' + ${usuario.cedula}}"> Eliminar </a></td>
+			<tr th:each="cliente : ${clientes}">
+				<td th:text=${cliente.cedula}></td>
+				<td th:text=${cliente.nombre_completo}></td>
+				<td th:text=${cliente.direccion}></td>
+				<td th:text=${cliente.telefono}></td>
+				<td th:text=${cliente.correo_electronico}></td>
+				<td><a th:href="@{'/consultarCliente/' + ${cliente.cedula}}"> Consultar </a> </td>
 			</tr>
-			
+
 		</tbody>
-	
-	
+
+
 	</table>
 
 </body>

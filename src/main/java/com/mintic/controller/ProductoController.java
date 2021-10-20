@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mintic.controller.services.ProveedoresServicesImpl;
 import com.mintic.dao.ProductoDao;
 import com.mintic.dao.ProveedorDao;
 import com.mintic.model.Producto;
@@ -42,15 +43,19 @@ public class ProductoController {
 	@Autowired
 	ProveedorDao proveedorDao;
 	
+	@Autowired
+	ProveedoresServicesImpl proveedorServices;
+
 	
-	
-	    
-	 
 	
 	@GetMapping("/gestionproducto")
 	public String gestionproducto(Model modelo, Producto producto) {
+		
+		List<Proveedor> listProveedor = proveedorServices.listarProveedores();	    
+		 		
 		modelo.addAttribute("producto", new Producto());
-		modelo.addAttribute("productos", productoDao.findAll());	
+		modelo.addAttribute("productos", productoDao.findAll());
+		modelo.addAttribute("proveedores", listProveedor);	
 		return "gestionproducto";
 		
 	}
@@ -58,8 +63,7 @@ public class ProductoController {
 	
 	@PostMapping("/crearProducto")
 	public String crearProducto(Model modelo, Producto producto) {
-	//	Proveedor proveedorParaAgregar = proveedorDao.findById();
-	//	producto.setNit(proveedorParaAgregar);
+		
 		productoDao.save(producto);
 		modelo.addAttribute("producto", new Producto());
 		modelo.addAttribute("productos", productoDao.findAll());

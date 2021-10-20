@@ -67,6 +67,7 @@ public class UploadController{
         	 byte[] bytes = file.getBytes();
         	 
              filename = file.getOriginalFilename();
+             
              Path path = Paths.get(UPLOADED_FOLDER + filename);
              Files.write(path, bytes);
            
@@ -83,6 +84,8 @@ public class UploadController{
     			producto.setNombre(record.getString("nombre"));
     			Proveedor proveedorParaAgregar = proveedorDao.findById(Long.parseLong(record.getString("nit"))).get();
     			producto.setNit(proveedorParaAgregar);
+    			
+    			
     			producto.setPrecio_compra(Double.parseDouble(record.getString("precio_compra")));
     			producto.setIva_compra(Double.parseDouble(record.getString("iva_compra")));
     			producto.setPrecio_venta(Double.parseDouble(record.getString("precio_venta")));
@@ -93,7 +96,7 @@ public class UploadController{
     		
     		
     		productoDao.saveAll(productolist);
-    		model.put("message", "Has subido correctamente el archivo " + filename + "', el tamaño del archivo es aproximadamente es de " +bytes.length/1024+" KB.");
+    		model.put("message", "Has subido correctamente el archivo " + filename + "', el tamaño del archivo es aproximadamente es de " +bytes.length+" B.");
     		modelo.addAttribute("productos", productoDao.findAll());
     		return "/upload";
         
